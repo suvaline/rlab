@@ -1,0 +1,44 @@
+<%= form_for(@lab) do |f| %>
+  <% if @lab.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@lab.errors.count, "error") %> prohibited this lab from being saved:</h2>
+
+      <ul>
+      <% @lab.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation %><br>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div class="field">
+    <%= f.label :mingroup %><br>
+    <%= f.number_field :mingroup %>
+  </div>
+  <div class="field">
+    <%= f.label :maxgroup %><br>
+    <%= f.number_field :maxgroup %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :users %>
+    <%= select_tag "users_selection", options_from_collection_for_select(User.all, 'id', 'email',@lab.users.map{ |j| j.id }), :multiple => true %>
+ </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

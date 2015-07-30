@@ -1,0 +1,11 @@
+<h1>Select lab</h1>
+<%=form_tag labsessions_path do%>
+	<div class="field">
+	    <%= labs = Lab.joins("join labs_users on labs.id = labs_users.lab_id").where(["labs_users.user_id = ?", current_user])
+select_tag "Labs", options_from_collection_for_select(labs, 'id', 'name', selected = nil), :multiple => false %>
+	</div>
+	<div class="field">
+	    <%= submit_tag :continue %>
+	</div>
+<%end%>
+

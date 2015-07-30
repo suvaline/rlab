@@ -1,0 +1,42 @@
+body {
+	margin: 0px;
+	padding: 0px;
+	font-family: verdana, arial, sans-serif;
+	font-size: 12px;
+}
+
+div#header {
+	background-color: #2255cc;
+	color: #ffffff;
+	font-size: 32pt;
+}
+
+div#two-collums {
+
+}
+
+div#navigator {
+	background-color: #efefef;
+	position: absolute;
+}
+
+.nav-option {
+	padding: 10px;
+	padding-left: 20px;
+	padding-right: 60px;
+}
+
+.nav-option:hover {
+	background-color: #fcfcfc;
+}
+
+.nav-option:active {
+	background-color: #4488FF;
+	color: #ffffff;
+}
+
+/* PAGE CONTENT STYLING */
+div#content {
+	position: absolute;
+	padding: 5px;
+}

@@ -1,0 +1,6 @@
+<h1>My Labs</h1>
+<%=link_to "Home", root_url%><br/>
+<%= select_tag "labs", options_from_collection_for_select(Lab.all, 'id', 'name'), :multiple => false %>
+
+
+<p>Find me in app/views/home/mylabs.html.erb</p>

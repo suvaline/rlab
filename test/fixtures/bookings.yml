@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start: 2015-07-20 12:26:23
+  step: 1
+  max_n: 1
+  total_n: 1
+  lab_id: 
+  user_id: 
+  group_id: 
+
+two:
+  start: 2015-07-20 12:26:23
+  step: 1
+  max_n: 1
+  total_n: 1
+  lab_id: 
+  user_id: 
+  group_id: 

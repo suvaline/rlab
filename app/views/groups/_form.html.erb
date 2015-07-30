@@ -1,0 +1,39 @@
+<%= form_for(@group) do |f| %>
+<%sessioncheck%>
+  <% if @group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
+
+      <ul>
+      <% @group.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation %><br>
+    <%= f.password_field :password_confirmation %>
+  </div>
+   <div class="field">
+<%= f.label :labs %>
+<%= select_tag "labs_selection", options_from_collection_for_select(Lab.all, 'id', 'name',@group.labs.map{ |j| j.id }), :multiple => true %>
+ </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

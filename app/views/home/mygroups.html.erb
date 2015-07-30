@@ -1,0 +1,6 @@
+<h1>My Groups</h1>
+<%=link_to "Home", root_url%><br/>
+<%= 
+groups = Group.joins("join groups_users on groups.id = groups_users.group_id").where(["groups_users.user_id = ?", current_user])
+select_tag "Groups", options_from_collection_for_select(groups, 'id', 'name', selected = nil), :multiple => false,:include_blank => true %>
+<p>Find me in app/views/home/mygroups.html.erb</p>

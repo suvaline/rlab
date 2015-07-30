@@ -1,0 +1,2 @@
+module LabsessionsHelper
+end

@@ -1,0 +1,37 @@
+<%= form_for(@lab_setting) do |f| %>
+  <% if @lab_setting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@lab_setting.errors.count, "error") %> prohibited this lab_setting from being saved:</h2>
+
+      <ul>
+      <% @lab_setting.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :lab_id %><br>
+    <%= f.text_field :lab_id %>
+  </div>
+  <div class="field">
+    <%= f.label :max_steps %><br>
+    <%= f.number_field :max_steps %>
+  </div>
+  <div class="field">
+    <%= f.label :total_steps %><br>
+    <%= f.number_field :total_steps %>
+  </div>
+  <div class="field">
+    <%= f.label :step_length %><br>
+    <%= f.number_field :step_length %>
+  </div>
+  <div class="field">
+    <%= f.label :extra_properties %><br>
+    <%= f.text_field :extra_properties %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,96 @@
+/* book hours */
+.hour {
+	position:absolute;
+}
+
+#tooltip {
+	position: absolute;
+	color: white;
+	background-color: black;
+	padding: 5px;
+	border-radius: 5px;
+	background: rgb(0, 0, 0); /* Fall-back for browsers that don't
+                                    support rgba */
+    background: rgba(0, 0, 0, .8);
+    visibility: hidden;
+}
+/* book */
+.book {
+	background-color: #efefef;/*#2255cc;*/
+	position: absolute;
+	
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	border-left:1px solid white;
+}
+.book:hover {
+	/*border:2px solid white;
+	border-left: 3px solid white;*/
+	border-bottom: 3px solid white;
+	border-top: 3px solid white;
+}
+.forbiden-time {
+	background-color: #ff5500;
+}
+.selected-book {
+	background-color: #2255cc;
+}
+.available-book {
+	background-color: #ccc;
+}
+
+#booking {
+	font-size: 12px;
+	position: relative;
+}
+
+#book-info {
+	margin: 10px;
+}
+
+a {
+	text-decoration: none;
+}
+
+#book-button {
+	background-color: #2255cc;
+	color: white;
+	border: none;
+	padding: 5px;
+	border-top-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+#book-button:hover {
+	background-color: #4488ff;
+	padding: 5px;
+}
+#book-button:active {
+	background-color: #000;
+	padding: 5px;
+	border-radius: 10px;
+}
+
+.arrow-left {
+	position: absolute;
+	width: 0; 
+	height: 0; 
+	border-top: 20px solid transparent; 
+	border-right: 15px solid #efefef; 
+	border-bottom: 20px solid transparent;
+}
+.arrow-left:hover { 
+	border-right: 15px solid #2255cc; 
+}
+
+.arrow-right {
+	position: absolute;
+	width: 0; 
+	height: 0; 
+	border-top: 20px solid transparent; 
+	border-left: 15px solid #efefef; 
+	border-bottom: 20px solid transparent;
+}
+.arrow-right:hover { 
+	border-left: 15px solid #2255cc; 
+}

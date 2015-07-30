@@ -1,0 +1,44 @@
+<%= form_for(@booking,remote: true) do |f| %>
+  <% if @booking.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+
+      <ul>
+      <% @booking.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <!--
+<% groups = Group.joins("join groups_users on groups.id = groups_users.group_id").joins("join groups_labs on groups.id = groups_labs.group_id").where(["groups_users.user_id = ? && groups_labs.lab_id = ?", current_user,selected_lab])
+select_tag "Groups", options_from_collection_for_select(groups, 'id', 'name'), :multiple => false %>
+
+-->
+  <div class="field">
+    <%= f.label :start %><br>
+    <%= f.datetime_select :start %>
+  </div>
+  <div class="field">
+    <%= f.label :step %><br>
+    <%= f.number_field :step %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :lab_id %><br>
+    <%= f.text_field :lab_id %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.text_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :group_id %><br>
+    <%= f.text_field :group_id %>
+  </div>
+  <%=request.raw_post%>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

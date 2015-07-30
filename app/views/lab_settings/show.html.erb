@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Lab:</strong>
+  <%= @lab_setting.lab %>
+</p>
+
+<p>
+  <strong>Max steps:</strong>
+  <%= @lab_setting.max_steps %>
+</p>
+
+<p>
+  <strong>Total steps:</strong>
+  <%= @lab_setting.total_steps %>
+</p>
+
+<p>
+  <strong>Step length:</strong>
+  <%= @lab_setting.step_length %>
+</p>
+
+<p>
+  <strong>Extra properties:</strong>
+  <%= @lab_setting.extra_properties %>
+</p>
+
+<%= link_to 'Edit', edit_lab_setting_path(@lab_setting) %> |
+<%= link_to 'Back', lab_settings_path %>
