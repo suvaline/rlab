@@ -333,7 +333,55 @@ function sendBookingData()
 	var hour  = parseInt(startTime / 60);
 	var minute= parseInt(startTime % 60);
 
-	var query = "?booking[start(1i)]="+year+"&booking[start(2i)]="+month+"&booking[start(3i)]="+day+"&booking[start(4i)]="+hour+"&booking[start(5i)]="+minute+"&booking[step]="+selected_book_steps+"&booking[lab_id]=1&booking[user_id]=1&booking[group_id]=3&commit=Create+Booking";
+	//var query = "?booking[start(1i)]="+year+"&booking[start(2i)]="+month+"&booking[start(3i)]="+day+"&booking[start(4i)]="+hour+"&booking[start(5i)]="+minute+"&booking[step]="+selected_book_steps+"&booking[lab_id]=1&booking[user_id]=1&booking[group_id]=3&commit=Create+Booking";
 
-	window.location=query;
+	var query = [
+		["booking[start(1i)]" , year],
+		["booking[start(2i)]", month],
+		["booking[start(3i)]", day],
+		["booking[start(4i)]", hour],
+		["booking[start(5i)]", minute],
+		["booking[step]", selected_book_steps ],
+		["booking[lab_id]",1],
+		["booking[user_id]",1],
+		["booking[group_id]",3],
+		["commit","Create+Booking"]
+	];
+
+	post("", query, "post" ); 
+}
+
+function post(path, params, method) 
+{
+    method = method || "post"; // Set method to post by default if not specified.
+
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+	
+	for(var i = 0; i < params.length; i++)
+	{
+		var hiddenField = document.createElement("input");
+		hiddenField.setAttribute("type", "hidden");
+		hiddenField.setAttribute("name",  params[i][0]);
+		hiddenField.setAttribute("value", params[i][1]);
+		
+		form.appendChild(hiddenField);
+	}
+	/*
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+         }
+    }
+	*/
+    document.body.appendChild(form);
+    form.submit();
 }
