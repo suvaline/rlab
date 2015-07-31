@@ -345,21 +345,21 @@ function sendBookingData()
 		["booking[lab_id]",1],
 		["booking[user_id]",1],
 		["booking[group_id]",3],
-		["commit","Create+Booking"]
+		["commit","Create Booking"]
 	];
 
-	post("", query, "post" ); 
+	post("/bookings", query, "post" ); 
 }
 
 function post(path, params, method) 
 {
-    method = method || "post"; // Set method to post by default if not specified.
+	method = method || "post";
 
-    // The rest of this code assumes you are not using a library.
-    // It can be made less wordy if you use one.
-    var form = document.createElement("form");
-    form.setAttribute("method", method);
-    form.setAttribute("action", path);
+	var form = document.createElement("form");
+	form.setAttribute("method", method);
+	form.setAttribute("action", path);
+	form.setAttribute("accept-charset","UTF-8");
+	form.setAttribute("data-remote",true);
 	
 	for(var i = 0; i < params.length; i++)
 	{
@@ -370,18 +370,7 @@ function post(path, params, method)
 		
 		form.appendChild(hiddenField);
 	}
-	/*
-    for(var key in params) {
-        if(params.hasOwnProperty(key)) {
-            var hiddenField = document.createElement("input");
-            hiddenField.setAttribute("type", "hidden");
-            hiddenField.setAttribute("name", key);
-            hiddenField.setAttribute("value", params[key]);
 
-            form.appendChild(hiddenField);
-         }
-    }
-	*/
     document.body.appendChild(form);
     form.submit();
 }
