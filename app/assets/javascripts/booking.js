@@ -330,7 +330,7 @@ function sendBookingData()
 	
 	var startTime = (book_start_time + timeline_offset + selected_book_index ) * time_step;
 	
-	var hour  = parseInt(startTime / 60);
+	var hour  = parseInt(startTime / 60) % 24;
 	var minute= parseInt(startTime % 60);
 
 	//var query = "?booking[start(1i)]="+year+"&booking[start(2i)]="+month+"&booking[start(3i)]="+day+"&booking[start(4i)]="+hour+"&booking[start(5i)]="+minute+"&booking[step]="+selected_book_steps+"&booking[lab_id]=1&booking[user_id]=1&booking[group_id]=3&commit=Create+Booking";
