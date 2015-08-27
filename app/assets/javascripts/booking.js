@@ -35,6 +35,9 @@ time_step = 15; // each unit = 15 minutes
 
 // CALCULATED VARIABLES
 book_start_time = 0;
+book_start_year = 0;
+book_start_month = 0;
+book_start_day   = 0;
 
 // BOOKINGS
 var book_times_start = [];
@@ -69,6 +72,10 @@ function CALCULATE_VARIABLES()
 {
 	var date = new Date();
 	minutes = date.getMinutes() + date.getHours()*60;
+	
+	book_start_year  = 1900 + date.getYear();
+	book_start_month = 1 + date.getMonth();
+	book_start_day   = date.getDate();
 
 	roundedMinutes = minutes - ( (minutes + 60 - time_offset) % time_step );
 	book_start_time = roundedMinutes / time_step;
@@ -324,16 +331,43 @@ function generateBookingForm()
 
 function sendBookingData()
 {
-	var year  = 2015;
-	var month = 7;
-	var day   = 31;
+	var year  = book_start_year;
+	var month = book_start_month;
+	var day   = book_start_day;
 	
 	var startTime = (book_start_time + timeline_offset + selected_book_index ) * time_step;
 	
 	var hour  = parseInt(startTime / 60) % 24;
 	var minute= parseInt(startTime % 60);
 
-	//var query = "?booking[start(1i)]="+year+"&booking[start(2i)]="+month+"&booking[start(3i)]="+day+"&booking[start(4i)]="+hour+"&booking[start(5i)]="+minute+"&booking[step]="+selected_book_steps+"&booking[lab_id]=1&booking[user_id]=1&booking[group_id]=3&commit=Create+Booking";
+	// fix incorrect day and month
+	day += parseInt(startTime / 1440);
+	
+	if( (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) && day > 31 )
+	{
+		day -= 31;
+		month++;
+		if( month > 12 )
+		{
+			month = 0;
+			year++;
+		}
+	}
+	else if( month != 2 && day > 30)
+	{
+		day -= 30;
+		month++;
+		if( month > 12 )
+		{
+			month = 0;
+			year++;
+		}
+	}
+	else if( day > 28 )
+	{
+		day -= 28;
+		month++;
+	}
 
 	var query = [
 		["booking[start(1i)]" , year],
@@ -348,18 +382,18 @@ function sendBookingData()
 		["commit","Create Booking"]
 	];
 
-	post("/bookings", query, "post" ); 
+	post("", query, "get" ); 
 }
 
 function post(path, params, method) 
 {
-	method = method || "post";
+    method = method || "post"; // Set method to post by default if not specified.
 
-	var form = document.createElement("form");
-	form.setAttribute("method", method);
-	form.setAttribute("action", path);
-	form.setAttribute("accept-charset","UTF-8");
-	form.setAttribute("data-remote",true);
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
 	
 	for(var i = 0; i < params.length; i++)
 	{
